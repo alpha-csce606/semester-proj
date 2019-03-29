@@ -1,0 +1,9 @@
+.app-header{
+  padding: 1rem 0;
+  text-align: center;
+  margin: 0;
+}
+.app-view-container{
+  position: relative;
+  /* overflow: scroll; */
+}

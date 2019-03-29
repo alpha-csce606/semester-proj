@@ -1,0 +1,41 @@
+.game-detail-container{
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
+}
+.game-image-container{
+  /* width: 80vw; */
+  margin: 0 auto;
+}
+.game-image-container img{
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+}
+.game-blanks-container{
+  padding: 2rem 0;
+}
+ul.game-blanks-holder{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+li.game-word-specific-blank{
+  justify-content: center;
+}
+.game-blanks{
+  flex-basis: 20px;
+  padding: 0 5px;
+  /* margin: 0 5px; */
+  flex: 0 0 2rem;
+}
+.game-blankinput{
+  background: transparent;
+  border: none;
+  width: 100%;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+}
