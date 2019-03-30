@@ -29,9 +29,10 @@ class Game_LabelMe extends Component{
         <div className="game-image-container">
           <img src={image}/>
         </div>
+
         <div className="game-blanks-container">
           <ul className="game-blanks-holder row">
-            <GameBlanksHolder words={this.state.solution.words}/>
+            <GameBlanksHolder words={this.props.solution.split('')}/>
           </ul>
         </div>
       </div>
@@ -40,3 +41,10 @@ class Game_LabelMe extends Component{
 }
 
 export default Game_LabelMe;
+
+
+/*
+<div className="game-detail-desc-ctr">
+
+</div>
+*/
