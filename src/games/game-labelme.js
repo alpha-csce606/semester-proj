@@ -3,6 +3,7 @@ import image from './../assets/mitochondria.jpg';
 
 import './game.css';
 import GameBlanksHolder from './game-blanks';
+import HintButton from './../common/hint-button';
 
 class Game_LabelMe extends Component{
   constructor(props){
@@ -10,32 +11,89 @@ class Game_LabelMe extends Component{
     this.state = {
       solution:{
         words: []
-      }
+      },
+      words: [],
+      toFind: [],
+      remainingCount: []
     }
+    this.updateScoreObj = this.updateScoreObj.bind(this);
+    this.triggerHint = this.triggerHint.bind(this);
   }
 
   componentDidMount(){
+      const arr = [];
+      let obj = {};
+
+      let solutionLength = this.props.solution.length;
+      let randomize = [];
+      //Find random characters to show hints in the beginning itself. Number of characters to show depends on the level chosen. For now let "this.props.level" denote the number of open values. Later stages create a hash table mapping level with number of solved blanks(TODO).
+      for(var i=0;i<this.props.level;i++){randomize.push(Math.floor(Math.random() * Math.floor(solutionLength)))}
+
+      this.props.solution.split('').map((item,index) => (
+        obj = {},
+        obj.value = item,
+        obj.id = index,
+        obj.reveal = randomize.indexOf(index) !== -1 ? true : false,
+        obj.resolved = false,
+        arr.push(obj)
+      ));
+
+      // To identify all the characters that need to be found in the array
+      let unsolvedBlanks = arr.filter(item => (item.reveal === false && item.resolved === false && item.value !== ' ')).map(item => item.id)
+
+
       this.setState({
-        solution:{
-          words: this.props.solution.split(' ')
-        }
+        words: arr,
+        toFind: unsolvedBlanks,
+        remainingCount: unsolvedBlanks.length
       });
-      console.log(this.state,this.props.solution)
+  }
+
+  updateScoreObj(index){
+    this.setState(state => {
+      const list = state.words;
+      list[index].resolved = true;
+      return{
+        words: list,
+        remainingCount: list.filter(item => (item.reveal === false && item.resolved === false && item.value !== ' ')).length,
+        toFind: list.filter(letter => letter.reveal === false && letter.resolved === false && letter.value !== ' ').map(item => item.id)
+      }
+    });
+  }
+
+  triggerHint(){
+    let hintIndex = this.state.toFind[Math.floor(Math.random() * this.state.toFind.length)];
+
+    this.setState(state => {
+      const letters = this.state.words;
+      letters[hintIndex].reveal = true;
+      return{
+        words: letters,
+        remainingCount: letters.filter(item => (item.reveal === false && item.resolved === false && item.value !== ' ')).length,
+        toFind: letters.filter(letter => letter.reveal === false && letter.resolved === false && letter.value !== ' ').map(item => item.id)
+      }
+    })
   }
 
   render(){
     return(
-      <div className="row game-detail-container">
-        <div className="game-image-container">
-          <img src={image}/>
-        </div>
+      <React.Fragment>
+        <div className="row game-detail-container">
+          <div className="game-image-container">
+            <img src={image}/>
+          </div>
 
-        <div className="game-blanks-container">
-          <ul className="game-blanks-holder row">
-            <GameBlanksHolder words={this.props.solution.split('')}/>
-          </ul>
+          <div className="game-blanks-container">
+            <ul className="game-blanks-holder row">
+              <GameBlanksHolder words={this.state.words} updateParent={this.updateScoreObj}/>
+            </ul>
+          </div>
+
+          <div className="bottom-align-container">
+            <HintButton triggerHint={this.triggerHint} label="Hint"/>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

@@ -8,21 +8,7 @@ class GameBlanksHolder extends Component{
     this.state = {
       words: []
     }
-  }
-  componentDidMount(){
-    const arr = [];
-    let obj = {};
-    this.props.words.map((item,index) => (
-      obj = {},
-      obj.value = item,
-      obj.id = index,
-      obj.reveal = false,
-      arr.push(obj)
-    ));
-
-    this.setState({
-      words: arr
-    })
+    this.updateScore = this.updateScore.bind(this);
   }
   returnBlanks(){
     return this.props.words.map((item,outterIndex) => (
@@ -36,10 +22,10 @@ class GameBlanksHolder extends Component{
     ))
   }
   updateScore(evt){
-    console.log('Game-blank holder component',parseInt(evt));
+    this.props.updateParent(evt);
   }
   returnBlankStates(){
-    return this.state.words.map((item,index) =>
+    return this.props.words.map((item,index) =>
       {
         if(item.value == ' '){
           return (

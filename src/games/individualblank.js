@@ -26,7 +26,7 @@ class BlankComponent extends Component{
         value: event.target.value,
         status: true
       })
-      this.props.updateParent();
+      this.props.updateParent(event.target.dataset.letterindex);
     }else{
       this.setState({
         value: '',
@@ -54,13 +54,21 @@ class BlankComponent extends Component{
       )
     }
   }
+  showcaseValue = () => {
+    if(this.props.isRevealed == true){
+      var that = this;
+      return this.props.letter;
+    }else{
+      return this.state.value;
+    }
+  }
   render(){
     let inputClasses = "game-blankinput ";
-    inputClasses += (this.state.status == true) ? 'disabled' : '';
+    inputClasses += (this.state.status == true || this.props.isRevealed) ? 'disabled' : '';
 
     return(
       <div className="game-blanks">
-        <input className={inputClasses} value={this.state.value} letterindex={this.props.letterIndex} disabled={this.state.status} onChange={this.handleChange}/>
+        <input className={inputClasses} value={this.showcaseValue()} data-letterindex={this.props.letterIndex} disabled={this.state.status || this.props.isRevealed} onChange={this.handleChange}/>
         {this.renderWrongInput()}
       </div>
     )

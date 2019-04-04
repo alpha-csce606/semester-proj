@@ -7,7 +7,7 @@ class GameContainer extends Component{
   }
   render(){
     return(
-      <Game_LabelMe solution="Golgi Apparatus"/>
+      <Game_LabelMe solution="Golgi Apparatus" level="3"/>
     )
   }
 }
