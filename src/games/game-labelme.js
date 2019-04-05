@@ -2,22 +2,26 @@ import React,{ Component } from 'react';
 import image from './../assets/mitochondria.jpg';
 
 import './game.css';
+import ModalWindow from './../common/modal-window';
 import GameBlanksHolder from './game-blanks';
+import GameSolution from './game-solution';
 import HintButton from './../common/hint-button';
 
 class Game_LabelMe extends Component{
   constructor(props){
     super(props);
     this.state = {
-      solution:{
-        words: []
-      },
       words: [],
       toFind: [],
-      remainingCount: []
+      remainingCount: undefined,
+
+      solutionDescription: "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop",
+      solution: this.props.solution,
+      closeModal: false
     }
     this.updateScoreObj = this.updateScoreObj.bind(this);
     this.triggerHint = this.triggerHint.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount(){
@@ -75,9 +79,18 @@ class Game_LabelMe extends Component{
     })
   }
 
+  closeModal(){
+    this.setState({
+      closeModal: true
+    })
+  }
+
   render(){
     return(
       <React.Fragment>
+        <ModalWindow showSolution={this.state.remainingCount == 0 && this.state.closeModal == false} closeModal={this.closeModal}>
+          <GameSolution image={image} description={this.state.solutionDescription} solution={this.state.solution}/>
+        </ModalWindow>
         <div className="row game-detail-container">
           <div className="game-image-container">
             <img src={image}/>

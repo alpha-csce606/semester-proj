@@ -95,3 +95,34 @@ li.game-word-specific-blank{
    -o-animation: flickerAnimation 0.7s infinite;
     animation: flickerAnimation 0.7s infinite;
 }
+
+
+.modal-solution-container{
+  width: 100%;
+  margin: 0;
+  flex-direction: column;
+}
+.modal-solution-container h1{
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.modal-solution-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.modal-description-scroll{
+  max-height: 36vh;
+  overflow-y: scroll;
+  margin: 1rem 0;
+  padding-right: 1rem;
+}
+
+/*Media Queries for screens above 768px*/
+@media screen and (min-width: 768px){
+  .modal-solution-container img{
+      max-height: 30vh;
+  }
+}

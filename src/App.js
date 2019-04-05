@@ -10,6 +10,7 @@ import Menu from './common/menu';
 import HomePage from './homepage';
 */
 import GameContainer from './games/game-container';
+import ModalWindow from './common/modal-window';
 /*
 import Game_LabelMe from './games/game-labelme';
 */

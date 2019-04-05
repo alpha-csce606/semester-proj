@@ -4,8 +4,7 @@
   margin: 0;
 }
 .app-view-container{
-  position: relative;
-  /* overflow: scroll; */
+  /* position: relative; */
 }
 .full-width{
   display: flex;
@@ -25,4 +24,27 @@
   bottom: 20px;
   left: 0;
   right: 0;
+}
+.modal-backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 10;
+}
+.modal-window-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  /* min-height: 80vh; */
+  max-height: 90vh;
+  z-index: 11;
 }
