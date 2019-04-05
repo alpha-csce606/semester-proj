@@ -89,11 +89,11 @@ class Game_LabelMe extends Component{
     return(
       <React.Fragment>
         <ModalWindow showSolution={this.state.remainingCount == 0 && this.state.closeModal == false} closeModal={this.closeModal}>
-          <GameSolution image={image} description={this.state.solutionDescription} solution={this.state.solution}/>
+          <GameSolution image={this.props.imageSrc} description={this.state.solutionDescription} solution={this.state.solution}/>
         </ModalWindow>
         <div className="row game-detail-container">
           <div className="game-image-container">
-            <img src={image}/>
+            <img src={this.props.imageSrc}/>
           </div>
 
           <div className="game-blanks-container">

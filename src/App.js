@@ -20,19 +20,7 @@ class App extends Component {
     super();
     this.state = {
       routerConfig: {
-        landing:{
-          title: "Select Game",
-          option:[
-            {
-              name: 'Game 1',
-              component: 'LabelMe 1'
-            },
-            {
-              name: 'Game 2',
-              component: 'LabelMe 2'
-            }
-          ]
-        }
+
       }
     }
   }

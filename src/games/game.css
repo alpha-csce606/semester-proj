@@ -8,11 +8,11 @@
   margin: 0 auto;
 }
 .game-image-container img{
-  /* width: 100%; */
+  width: 100%;
   height: auto;
   /* max-height: 50vh; */
   max-height: 40vh;
-  width: auto;
+  /* width: auto; */
 }
 .game-blanks-container{
   margin-top: 1rem;
