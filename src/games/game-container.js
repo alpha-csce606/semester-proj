@@ -25,7 +25,7 @@ class GameContainer extends Component{
       return null;
     }
     return(
-      <Game_LabelMe solution={this.state.data.solution} imageSrc={this.state.data.cdn_imageSrc} level="3"/>
+      <Game_LabelMe solution={this.state.data.solution} imageSrc={this.state.data.imageSrc} level="3"/>
     )
   }
 }
