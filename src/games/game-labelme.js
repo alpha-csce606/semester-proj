@@ -6,6 +6,8 @@ import ModalWindow from './../common/modal-window';
 import GameBlanksHolder from './game-blanks';
 import GameSolution from './game-solution';
 import HintButton from './../common/hint-button';
+import Menu from './../menu';
+import ReactDOM from 'react-dom';
 
 class Game_LabelMe extends Component{
   constructor(props){
@@ -85,6 +87,10 @@ class Game_LabelMe extends Component{
     })
   }
 
+  gotohome(){
+    ReactDOM.render(<Menu />, document.getElementById('root'));
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -104,6 +110,9 @@ class Game_LabelMe extends Component{
 
           <div className="bottom-align-container">
             <HintButton triggerHint={this.triggerHint} label="Hint"/>
+          </div>
+          <div className="bottom-align-container">
+            <button triggerHint={this.triggerHint} label="Hint" onClick={this.gotohome}>Home</button>
           </div>
         </div>
       </React.Fragment>

@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300');
+
+$bg: #34495e;
+$primarycolor: #f39c12;
+$white: #ecf0f1;
+$font: 'Rubik';
+
+html, body {
+  background: radial-gradient($bg 0, darken($bg, 15%) 100%);
+  min-height: 100vh;
+  font-family: $font, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.description {
+  color: $white;
+  font-size: 22px;
+  line-height: 1.4;
+  padding: 50px 0;
+  text-align: center;
+  width: 100%;
+  
+  a,
+  a:hover,
+  a:active,
+  a:focus,
+  a:visited {
+    color: darken($white, 15%);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    border-bottom: 1px solid lighten($white, 15%);
+  }
+}
+
+.menu-container {
+  box-shadow: 0 0px 50px hsla(0, 0, 0, 0.7);
+  position: relative;
+  transform: translate(0);
+  margin: 0 auto;
+  width: 350px;
+}
+
+.menu-item,
+.menu-item--active {
+  height: 60px;
+  width: 100%;
+}
+
+.menu-item {
+  align-items: center;
+  color: $white;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  letter-spacing: 4px;
+  text-align: center;
+  
+  &.active {
+    box-shadow: 0 2px 3px hsla(0, 0, 0, 0.7);
+  }
+ 
+  &:nth-of-type(1) {
+    background: $primarycolor;
+  }
+  &:nth-of-type(2) {
+    background: darken($primarycolor, 5%);
+  }
+  &:nth-of-type(3) {
+    background: darken($primarycolor, 10%);
+  }
+  &:nth-of-type(4) {
+    background: darken($primarycolor, 15%);
+  }
+  &:nth-of-type(5) {
+    background: darken($primarycolor, 20%);
+  }
+}
+
+.menu-item--active {
+  background: $primarycolor;
+  border-radius: 2px !important;
+  box-shadow: 0 0px 50px hsla(0, 0, 0, 0.5);
+  left: 50%;
+  padding: 0 7px;
+  position: absolute;
+  transform: translateX(-50%);
+  transition: all 300ms;
+  z-index: -1;
+}
+
+
+
+
+
+html, body {
+  background: radial-gradient(#34495e 0, #19232d 100%);
+  min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.description {
+  color: #ecf0f1;
+  font-size: 22px;
+  line-height: 1.4;
+  padding: 50px 0;
+  text-align: center;
+  width: 100%;
+}
+.description a,
+.description a:hover,
+.description a:active,
+.description a:focus,
+.description a:visited {
+  color: #c0cdd1;
+  text-decoration: none;
+}
+.description a:hover {
+  border-bottom: 1px solid white;
+}
+
+.menu-container {
+  box-shadow: 0 0px 50px rgba(0, 0, 0, 0.7);
+  position: relative;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+  margin: 0 auto;
+  width: 350px;
+}
+
+.menu-item,
+.menu-item--active {
+  height: 60px;
+  width: 100%;
+}
+
+.menu-item {
+  align-items: center;
+  color: #ecf0f1;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  letter-spacing: 4px;
+  text-align: center;
+}
+.menu-item.active {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+.menu-item:nth-of-type(1) {
+  background: #f39c12;
+}
+.menu-item:nth-of-type(2) {
+  background: #e08e0b;
+}
+.menu-item:nth-of-type(3) {
+  background: #c87f0a;
+}
+.menu-item:nth-of-type(4) {
+  background: #b06f09;
+}
+.menu-item:nth-of-type(5) {
+  background: #976008;
+}
+
+.menu-item--active {
+  background: #f39c12;
+  border-radius: 2px !important;
+  box-shadow: 0 0px 50px rgba(0, 0, 0, 0.5);
+  left: 50%;
+  padding: 0 7px;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  transition: all 300ms;
+  z-index: -1;
+}
+
+.game-item {
+  align-items: center;
+  color: #ffffff;
+  background: #a52c7f;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  letter-spacing: 4px;
+  text-align: center;
+}
