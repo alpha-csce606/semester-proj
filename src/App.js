@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <Router>
         <div className="app-container">
-          <PageHeader page="Guess the object"/>
+          <PageHeader page="LabelMe"/>
           <div className="app-view-container">
             <Route exact path="/" component={GameContainer}/>
           </div>
