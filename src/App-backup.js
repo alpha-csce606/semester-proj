@@ -11,9 +11,6 @@ import HomePage from './homepage';
 */
 import GameContainer from './games/game-container';
 import ModalWindow from './common/modal-window';
-
-import ChooseGame from './choose-game';
-import GameViewContainer from './game-view';
 /*
 import Game_LabelMe from './games/game-labelme';
 */
@@ -33,8 +30,7 @@ class App extends Component {
         <div className="app-container">
           <PageHeader page="LabelMe"/>
           <div className="app-view-container">
-            <Route exact path="/" component={ChooseGame}/>
-            <Route exact path="/game/:id" component={GameViewContainer}/>
+            <Route exact path="/" component={GameContainer}/>
           </div>
         </div>
       </Router>
@@ -43,5 +39,3 @@ class App extends Component {
 }
 
 export default App;
-
-  /*<Route exact path="/" component={GameContainer}/>*/
