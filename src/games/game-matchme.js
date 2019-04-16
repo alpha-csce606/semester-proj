@@ -8,10 +8,14 @@ class Game_MatchMe extends Component{
     this.state = {
       data: undefined,
       activeSelection: undefined,
-      highlight: false
+      highlight: false,
+      activeIndexCheck: undefined
     }
     this.lockSelection = this.lockSelection.bind(this);
     this.checkSolution = this.checkSolution.bind(this);
+    this.removeSelection = this.removeSelection.bind(this);
+
+    this.optionsContainerComponent = React.createRef();
   }
   componentDidMount(){
     let randomIndex;
@@ -29,8 +33,9 @@ class Game_MatchMe extends Component{
           if(blanks.indexOf(checkItem.replace(/[^a-zA-Z ]/g, "")) != -1){
             return {
               word: item,
-              index: 0,
-              match: blankCount++
+              index: index,
+              match: blankCount++,
+              solved: false
             }
           }else{
             return {
@@ -51,27 +56,41 @@ class Game_MatchMe extends Component{
         })
       });
   }
+  //To help lock the selection of option before dropping it in the solution blank
   lockSelection(activeIndex){
     this.setState({
       activeSelection: this.state.options[activeIndex],
       highlight: true
     })
   }
-  checkSolution(index){
-    console.log(this.state.activeSelection)
-    console.log(this.state.solution[index])
-    if(this.state.solution[index].word.toLowerCase() == this.state.activeSelection.toLowerCase()){
-      alert('Right Answer')
+  //Compare the answers once an input is clicked after locking a selection
+  checkSolution(index,match){
+    if(this.state.solution[match].word.toLowerCase() == this.state.activeSelection.toLowerCase()){
+      this.setState(state => {
+        const words = state.data;
+        words[index].solved = true;
+        return{
+          words: words
+        }
+      });
     }else{
-      alert('Wrong Answer')
+      //Handle the wrong answer section here
     }
+  }
+  //Remove the selection of the items and the highlight container
+  removeSelection(){
+    alert('Should not go here')
+    this.setState({
+      highlight: false
+    })
+    this.optionsContainerComponent.current.removeOptionSelection()
   }
   render(){
     if (this.state.data != undefined){
       return(
-        <div className="definition-holder">
+        <div className="definition-holder" onClick={this.removeSelection}>
           <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight} blanks={this.state.blanks}/>
-          <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection}/>
+          <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection} ref={this.optionsContainerComponent}/>
         </div>
       )
     }

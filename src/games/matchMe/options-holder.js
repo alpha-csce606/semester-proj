@@ -8,12 +8,19 @@ class MatchMe_Options extends Component{
       activeIndex: undefined
     }
     this.setOptionActive = this.setOptionActive.bind(this);
+    //Remove the selection of the option - function being called from the parent
+    this.removeOptionSelection = this.removeOptionSelection.bind(this);
   }
   setOptionActive(index){
     this.setState({
       activeIndex: index
     });
     this.props.lockSelection(index);
+  }
+  removeOptionSelection(){
+    this.setState({
+      activeIndex: undefined
+    })
   }
   renderOptions(){
     return this.props.options.map((item,index) => (

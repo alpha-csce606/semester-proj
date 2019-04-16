@@ -13,16 +13,22 @@ class MatchMe_DefinitionHolder extends Component{
     if(!this.props.highlight){
       return false
     }
-    console.log('check')
+
     //Send the chosen input to the MatchMe Component
-    this.props.checkAnswers(event.target.getAttribute('index'))
+    this.props.checkAnswers(event.target.getAttribute('index'),event.target.getAttribute('match'))
   }
   renderBlanks(){
     return this.props.definition.map((item,index) =>{
-        if(item.index == 0){
-          return(
-            <input index={item.match} name="matchMeBlank" value="" readOnly className="matchMe_Input" onClick={this.checkSolution}/>
-          )
+        if(item.solved != undefined){
+          if(!item.solved){
+            return(
+              <input match={item.match} index={item.index} name="matchMeBlank" value="" readOnly className="matchMe_Input" onClick={this.checkSolution}/>
+            )
+          }else{
+            return(
+              <span className="green">{item.word}</span>
+            )
+          }
         }else{
           return(
             <span> {item.word} </span>

@@ -10,12 +10,13 @@ class MatchMeOption extends Component{
   }
   handleClick(event){
     this.props.setActive(this.props.index);
+    event.stopPropagation();
   }
   render(){
     let inputClasses = "matchme-option ";
     inputClasses += (this.props.index == this.props.activeItem) ? 'active':'';
     return(
-      <li id={this.props.index+1} onClick={this.handleClick} className={inputClasses}>{this.props.index+1}. {this.props.option}</li>
+      <li id={this.props.index+1} onClick={this.handleClick} className={inputClasses}>{this.props.option}</li>
     )
   }
 }
