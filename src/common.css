@@ -5,6 +5,7 @@
 }
 .app-view-container{
   /* position: relative; */
+  height: calc(100vh - 80px);
 }
 .full-width{
   display: flex;

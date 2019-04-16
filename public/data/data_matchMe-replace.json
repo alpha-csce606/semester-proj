@@ -1,0 +1,12 @@
+[
+  {
+    "definition": "Bacteria are single-celled microorganisms with prokaryotic cells, which are single cells that do not have organelles or a true nucleus and are less complex than eukaryotic cells",
+    "blanks": ["bacteria"],
+    "options": ["nucleus","nucleolus","Mitochondria"]
+  },
+  {
+    "definition": "The chloroplast, found only in algal and plant cells, is a cell organelle that produces energy through photosynthesis",
+    "blanks": ["chloroplast","photosynthesis"],
+    "options": ["nucleus","nucleolus","Mitochondria"]
+  }
+]

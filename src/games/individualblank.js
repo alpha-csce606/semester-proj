@@ -56,7 +56,6 @@ class BlankComponent extends Component{
   }
   showcaseValue = () => {
     if(this.props.isRevealed == true){
-      var that = this;
       return this.props.letter;
     }else{
       return this.state.value;

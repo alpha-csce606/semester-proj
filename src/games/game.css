@@ -120,9 +120,63 @@ li.game-word-specific-blank{
   padding-right: 1rem;
 }
 
+.definition-holder{
+  width: 80%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 /*Media Queries for screens above 768px*/
 @media screen and (min-width: 768px){
   .modal-solution-container img{
       max-height: 30vh;
   }
+}
+.matchMe_Input{
+  position: relative;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  outline: 0;
+  margin: 0 0.5rem 0.5rem 0;
+  z-index: 12;
+}
+.definition-para{
+  position: relative;
+  padding: 1rem;
+  line-height: 1.6;
+}
+.definition-para.highlightInput .matchMe_Input{
+  background: #fff;
+  cursor: pointer;
+}
+.matchMe-options{
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+li.matchme-option{
+  flex-basis: 50%;
+  margin: 1rem 0;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+}
+li.matchme-option.active{
+  transform: scale(1.3);
+}
+.highlight-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.2;
+  z-index: 10;
+}
+.disp-none{
+  display: none;
 }
