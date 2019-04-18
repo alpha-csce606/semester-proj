@@ -27,11 +27,16 @@ class App extends Component {
       }
     }
   }
+  componentDidMount(){
+    this.setState({
+      url: this.props.location
+    })
+  }
   render() {
     return (
       <Router>
         <div className="app-container">
-          <PageHeader page="LabelMe"/>
+          <PageHeader page="BioPro - Learn Biology the fun way"/>
           <div className="app-view-container">
             <Route exact path="/" component={ChooseGame}/>
             <Route exact path="/game/:id" component={GameViewContainer}/>
