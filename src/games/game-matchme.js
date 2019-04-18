@@ -79,7 +79,7 @@ class Game_MatchMe extends Component{
   }
   //Remove the selection of the items and the highlight container
   removeSelection(){
-    alert('Should not go here')
+    // alert('Should not go here')
     this.setState({
       highlight: false
     })

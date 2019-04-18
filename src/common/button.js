@@ -8,7 +8,7 @@ class PrimaryButton extends Component{
   render(){
     return(
       <Link to={this.props.link} id={this.props.id} className="primary-btn">
-        <button>{this.props.message}</button>
+        {this.props.message}
       </Link>
     )
   }

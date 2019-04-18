@@ -22,6 +22,8 @@ class Game_LabelMe extends Component{
     this.updateScoreObj = this.updateScoreObj.bind(this);
     this.triggerHint = this.triggerHint.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.renderHintButton = this.renderHintButton.bind(this);
   }
 
   componentDidMount(){
@@ -66,6 +68,9 @@ class Game_LabelMe extends Component{
   }
 
   triggerHint(){
+    if(this.state.remainingCount <= 0){
+      return false
+    }
     let hintIndex = this.state.toFind[Math.floor(Math.random() * this.state.toFind.length)];
 
     this.setState(state => {
@@ -77,6 +82,12 @@ class Game_LabelMe extends Component{
         toFind: letters.filter(letter => letter.reveal === false && letter.resolved === false && letter.value !== ' ').map(item => item.id)
       }
     })
+  }
+
+  renderHintButton(){
+    if(this.state.remainingCount > 0){
+        return (<HintButton triggerHint={this.triggerHint} label="Hint"/>)
+    }
   }
 
   closeModal(){
@@ -103,7 +114,9 @@ class Game_LabelMe extends Component{
           </div>
 
           <div className="bottom-align-container">
-            <HintButton triggerHint={this.triggerHint} label="Hint"/>
+            {
+              this.renderHintButton()
+            }
           </div>
         </div>
       </React.Fragment>
