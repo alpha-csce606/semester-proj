@@ -26,12 +26,14 @@ class App extends Component {
 
       }
     }
+    
   }
   componentDidMount(){
     this.setState({
       url: this.props.location
     })
   }
+
   render() {
     return (
       <Router>

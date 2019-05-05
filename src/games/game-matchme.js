@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MatchMe_DefinitionHolder from './matchMe/definition-container';
 import MatchMe_Options from './matchMe/options-holder';
 
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 class Game_MatchMe extends Component{
   constructor(props){
     super(props);
@@ -16,6 +18,8 @@ class Game_MatchMe extends Component{
     this.removeSelection = this.removeSelection.bind(this);
 
     this.optionsContainerComponent = React.createRef();
+
+    this.renderBackButton = this.renderBackButton.bind(this);
   }
   componentDidMount(){
     let randomIndex;
@@ -85,12 +89,22 @@ class Game_MatchMe extends Component{
     })
     this.optionsContainerComponent.current.removeOptionSelection()
   }
+  renderBackButton(){
+    return(
+        <Link to="/">
+          <img src="https://image.flaticon.com/icons/svg/54/54097.svg" className="back-button"/>
+        </Link>
+    )
+  }
   render(){
     if (this.state.data != undefined){
       return(
         <div className="definition-holder" onClick={this.removeSelection}>
           <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight} blanks={this.state.blanks}/>
           <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection} ref={this.optionsContainerComponent}/>
+          {
+            this.renderBackButton()
+          }
         </div>
       )
     }

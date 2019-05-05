@@ -13,12 +13,10 @@ class ChooseGame extends Component{
       games:[{
         message: "LabelMe",
         link: "/game/labelMe",
-        //levels: [1,2,3,4]
         levels: ['Easy','Medium','Hard']
       },{
         message: "MatchMe",
         link: "/game/matchMe",
-        // levels: [1,2,3]
         levels: ['Easy','Medium','Hard']
       }],
       gameSelected: 0,
@@ -78,8 +76,3 @@ class ChooseGame extends Component{
 }
 
 export default ChooseGame;
-
-/*
-<Link to="/game/labelMe">LabelMe</Link>
-<Link to="/game/matchMe">MatchMe</Link>
-*/

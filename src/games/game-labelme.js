@@ -7,6 +7,8 @@ import GameBlanksHolder from './game-blanks';
 import GameSolution from './game-solution';
 import HintButton from './../common/hint-button';
 
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 class Game_LabelMe extends Component{
   constructor(props){
     super(props);
@@ -24,6 +26,8 @@ class Game_LabelMe extends Component{
     this.closeModal = this.closeModal.bind(this);
 
     this.renderHintButton = this.renderHintButton.bind(this);
+
+    this.renderBackButton = this.renderBackButton.bind(this);
   }
 
   componentDidMount(){
@@ -96,9 +100,20 @@ class Game_LabelMe extends Component{
     })
   }
 
+  renderBackButton(){
+    return(
+        <Link to="/">
+          <img src="https://image.flaticon.com/icons/svg/54/54097.svg" className="back-button"/>
+        </Link>
+    )
+  }
+
   render(){
     return(
       <React.Fragment>
+        {
+          this.renderBackButton()
+        }
         <ModalWindow showSolution={this.state.remainingCount == 0 && this.state.closeModal == false} closeModal={this.closeModal}>
           <GameSolution image={this.props.imageSrc} description={this.state.solutionDescription} solution={this.state.solution}/>
         </ModalWindow>
