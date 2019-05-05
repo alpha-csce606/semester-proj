@@ -10,7 +10,16 @@ class GameContainer extends Component{
   }
   componentDidMount(){
     let randomIndex;
-    fetch('http://localhost:3000/data/data_labelMe.json')
+    console.log(this.props)
+    // let url = 'http://localhost:3000/data/LabelMe/' + this.props.level + '.json';
+    // let url = 'http://localhost:3000/data/data_labelMe_e.json';
+    let url = 'http://localhost:3000/data/data_labelMe.json';
+    console.log(url)
+    fetch(url,{headers: new Headers({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+       })
+     })
       .then(res => res.json())
       .then((res) => {
         console.log(this.state,res);
@@ -25,7 +34,7 @@ class GameContainer extends Component{
       return null;
     }
     return(
-      <Game_LabelMe solution={this.state.data.solution} imageSrc={this.state.data.imageSrc} level="3"/>
+      <Game_LabelMe solution={this.state.data.solution} imageSrc={this.state.data.imageSrc}/>
     )
   }
 }

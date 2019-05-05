@@ -68,3 +68,28 @@
   cursor: pointer;
   text-transform: uppercase;
 }
+
+.fadeIn-appear {
+  opacity: 0.01;
+}
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+  transition: all .5s ease-in;
+}
+.chooselevel-container{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.chooselevel-container li{
+  text-align: center;
+  width: 100%;
+  line-height: 2;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+.choose-level-heading{
+  text-align: center;
+  margin-bottom: 1rem;
+}

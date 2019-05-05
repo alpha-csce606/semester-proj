@@ -39,7 +39,7 @@ class App extends Component {
           <PageHeader page="BioPro - Learn Biology the fun way"/>
           <div className="app-view-container">
             <Route exact path="/" component={ChooseGame}/>
-            <Route exact path="/game/:id" component={GameViewContainer}/>
+            <Route exact path="/game/:id/:level" component={GameViewContainer}/>
           </div>
         </div>
       </Router>

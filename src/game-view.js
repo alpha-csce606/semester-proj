@@ -11,13 +11,13 @@ class GameViewContainer extends Component{
     }
   }
   componentDidMount(){
-    console.log(this.props.match.params)
+    console.log(this.props.match.params.level)
   }
   render(){
     return(
       <React.Fragment>
-        <Route path="/game/labelMe" component={GameContainer}/>
-        <Route path="/game/matchMe" component={Game_MatchMe}/>
+        <Route path={"/game/labelMe"} level={this.props.match.params.level} render={(props) => <GameContainer {...props} level={this.props.match.params.level} /> }/>
+        <Route path={"/game/matchMe"} level={this.props.match.params.level} render={(props) => <Game_MatchMe {...props} level={this.props.match.params.level} /> }/>
       </React.Fragment>
     )
   }
