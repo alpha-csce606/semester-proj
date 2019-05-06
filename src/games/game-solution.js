@@ -15,7 +15,6 @@ class GameSolution extends Component{
         <h1>{this.props.solution}</h1>
         <img src={this.props.image} alt=""/>
         <div className="modal-description-scroll">{this.props.description}</div>
-        <button onClick={this.nextQuesTrigger}>Next</button>
       </div>
     )
   }

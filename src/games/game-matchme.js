@@ -4,6 +4,9 @@ import MatchMe_Options from './matchMe/options-holder';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import ModalWindow from './../common/modal-window';
+import GameSolution from './game-solution';
+
 class Game_MatchMe extends Component{
   constructor(props){
     super(props);
@@ -11,7 +14,8 @@ class Game_MatchMe extends Component{
       data: undefined,
       activeSelection: undefined,
       highlight: false,
-      activeIndexCheck: undefined
+      activeIndexCheck: undefined,
+      closeModal: false
     }
 
     this.renderIndex = 0;
@@ -23,10 +27,12 @@ class Game_MatchMe extends Component{
     this.optionsContainerComponent = React.createRef();
 
     this.renderBackButton = this.renderBackButton.bind(this);
+
+    this.closeModalWindow = this.closeModalWindow.bind(this);
   }
   componentDidMount(){
-    console.log(this.props.refreshState)
     let randomIndex;
+    let answerKey = {};
     fetch('http://localhost:3000/data/data_matchMe.json')
       .then(res => res.json())
       .then((res) => {
@@ -56,6 +62,9 @@ class Game_MatchMe extends Component{
           }
         });
 
+        answerKey.solutionDescription = res[randomIndex].solutionDescription;
+        answerKey.imageSrc = res[randomIndex].imageSrc;
+
         let solutionMap = wordsHash.filter((item) => {
           return item.match != undefined
         });
@@ -63,10 +72,18 @@ class Game_MatchMe extends Component{
         this.setState({
           data: wordsHash,
           solution: solutionMap,
-          options: options
+          options: options,
+          answerKey: answerKey
         })
       });
   }
+
+  closeModalWindow(){
+    this.setState({
+      closeModal: true
+    })
+  }
+
   //To help lock the selection of option before dropping it in the solution blank
   lockSelection(activeIndex){
     this.setState({
@@ -104,11 +121,24 @@ class Game_MatchMe extends Component{
   }
   render(){
     this.renderIndex++;
+    let solutionFound = false
+
+
+    if(this.state.solution != undefined){
+        let toFindCount = this.state.solution.filter(item => item.solved == false).length
+        if(toFindCount == 0){
+          solutionFound = true
+        }
+    }
+
     if (this.state.data != undefined){
       return(
         <React.Fragment>
+          <ModalWindow showSolution={solutionFound && this.state.closeModal == false} closeModal={this.closeModalWindow}>
+            <GameSolution image={this.state.answerKey.imageSrc} description={this.state.answerKey.solutionDescription} solution={null}/>
+          </ModalWindow>
           <div className="definition-holder" onClick={this.removeSelection} onDrop={(event)=>this.removeSelection}>
-            <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight} blanks={this.state.blanks}/>
+            <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight && !solutionFound} blanks={this.state.blanks}/>
             <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection} ref={this.optionsContainerComponent}/>
             {
               this.renderBackButton()

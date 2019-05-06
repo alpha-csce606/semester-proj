@@ -164,12 +164,13 @@ li.matchme-option{
   flex-basis: 75%;
   margin: 1rem 0;
   text-transform: capitalize;
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 1rem;
   border: 1px solid #ccc;
   align-self: center;
   text-align: center;
   transition: 0.5s all ease-in-out;
+  cursor: move;
 }
 li.matchme-option.active{
   /* border-color: green; */

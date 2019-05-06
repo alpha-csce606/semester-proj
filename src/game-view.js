@@ -14,7 +14,7 @@ class GameViewContainer extends Component{
     this.index = 0;
   }
   componentDidMount(){
-    console.log(this.props.match.params.level)
+    
   }
   triggerNextQues(){
     this.setState({

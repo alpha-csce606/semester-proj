@@ -13,20 +13,22 @@ class ChooseGame extends Component{
       games:[{
         message: "LabelMe",
         link: "/game/labelMe",
-        levels: ['Easy','Medium','Hard']
+        levels: ['Easy','Medium','Hard'],
+        description: ["Guess the word based on the image that pops up or the text description that shows up along with the image."]
       },{
         message: "MatchMe",
         link: "/game/matchMe",
-        levels: ['Easy','Medium','Hard']
+        levels: ['Easy','Medium','Hard'],
+        description: ["Drag and drop the answers onto the appropriate blanks based on the description provided."]
       }],
       gameSelected: 0,
       chooseLevelDialog: false
     };
     this.renderLevels = this.renderLevels.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   selectGame = (GameId) => {
-    console.log(GameId)
     this.setState({
       gameSelected: GameId,
       chooseLevelDialog: true
@@ -46,17 +48,23 @@ class ChooseGame extends Component{
     )
   }
 
+  closeModal(){
+    this.setState({
+      chooseLevelDialog: false
+    })
+  }
+
   render(){
-    const button = this.state.games.map((item,index) => <PrimaryButton chooseGame={this.selectGame} id={index} message={item.message} link={item.link} levels={item.levels}/>)
+    const button = this.state.games.map((item,index) => <PrimaryButton chooseGame={this.selectGame} description={item.description} id={index} message={item.message} link={item.link} levels={item.levels}/>)
 
     return(
       <React.Fragment>
         <ChooseLevel showLevels={this.state.chooseLevelDialog}>
           <h1 className="choose-level-heading">Pick Level</h1>
+          <div className="close-modal" onClick={this.closeModal}>X</div>
           <ul className="chooselevel-container">
           {
             this.renderLevels()
-
           }
           </ul>
         </ChooseLevel>

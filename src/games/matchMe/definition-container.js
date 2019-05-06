@@ -20,7 +20,6 @@ class MatchMe_DefinitionHolder extends Component{
   }
 
   handleDrop(event,target){
-    console.log(target,event);
     this.checkSolution(event);
   }
 
