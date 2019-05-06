@@ -28,6 +28,7 @@ class Game_LabelMe extends Component{
     this.renderHintButton = this.renderHintButton.bind(this);
 
     this.renderBackButton = this.renderBackButton.bind(this);
+    this.triggerNextQuestion = this.triggerNextQuestion.bind(this);
   }
 
   componentDidMount(){
@@ -108,6 +109,16 @@ class Game_LabelMe extends Component{
     )
   }
 
+  renderNextQuesButton(){
+    return(
+        <button className="ques-btn" onClick={this.triggerNextQuestion}>Next Question</button>
+    )
+  }
+
+  triggerNextQuestion(){
+    this.props.nextQuestion()
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -115,7 +126,7 @@ class Game_LabelMe extends Component{
           this.renderBackButton()
         }
         <ModalWindow showSolution={this.state.remainingCount == 0 && this.state.closeModal == false} closeModal={this.closeModal}>
-          <GameSolution image={this.props.imageSrc} description={this.state.solutionDescription} solution={this.state.solution}/>
+          <GameSolution image={this.props.imageSrc} description={this.state.solutionDescription} solution={this.state.solution} nextQuestionTrigger={this.triggerNextQuestion}/>
         </ModalWindow>
         <div className="row game-detail-container">
           <div className="game-image-container">
@@ -131,6 +142,9 @@ class Game_LabelMe extends Component{
           <div className="bottom-align-container">
             {
               this.renderHintButton()
+            }
+            {
+              this.renderNextQuesButton()
             }
           </div>
         </div>

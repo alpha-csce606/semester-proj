@@ -13,6 +13,9 @@ class Game_MatchMe extends Component{
       highlight: false,
       activeIndexCheck: undefined
     }
+
+    this.renderIndex = 0;
+
     this.lockSelection = this.lockSelection.bind(this);
     this.checkSolution = this.checkSolution.bind(this);
     this.removeSelection = this.removeSelection.bind(this);
@@ -22,17 +25,21 @@ class Game_MatchMe extends Component{
     this.renderBackButton = this.renderBackButton.bind(this);
   }
   componentDidMount(){
+    console.log(this.props.refreshState)
     let randomIndex;
     fetch('http://localhost:3000/data/data_matchMe.json')
       .then(res => res.json())
       .then((res) => {
+        this.setState({
+          questionBank: res
+        })
         randomIndex = Math.floor(Math.random() * res.length);
         let blankCount = 0;
         let words = res[randomIndex].definition.split(' ');
         let blanks = res[randomIndex].blanks;
         let options = res[randomIndex].options;
         let wordsHash = words.map((item,index) => {
-          let checkItem = item.toLowerCase();
+        let checkItem = item.toLowerCase();
 
           if(blanks.indexOf(checkItem.replace(/[^a-zA-Z ]/g, "")) != -1){
             return {
@@ -83,7 +90,6 @@ class Game_MatchMe extends Component{
   }
   //Remove the selection of the items and the highlight container
   removeSelection(){
-    // alert('Should not go here')
     this.setState({
       highlight: false
     })
@@ -97,15 +103,21 @@ class Game_MatchMe extends Component{
     )
   }
   render(){
+    this.renderIndex++;
     if (this.state.data != undefined){
       return(
-        <div className="definition-holder" onClick={this.removeSelection}>
-          <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight} blanks={this.state.blanks}/>
-          <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection} ref={this.optionsContainerComponent}/>
-          {
-            this.renderBackButton()
-          }
-        </div>
+        <React.Fragment>
+          <div className="definition-holder" onClick={this.removeSelection} onDrop={(event)=>this.removeSelection}>
+            <MatchMe_DefinitionHolder checkAnswers={this.checkSolution} definition={this.state.data} highlight={this.state.highlight} blanks={this.state.blanks}/>
+            <MatchMe_Options options={this.state.options} blanks={this.state.blanks} lockSelection={this.lockSelection} ref={this.optionsContainerComponent}/>
+            {
+              this.renderBackButton()
+            }
+          </div>
+          <div className="bottom-align-container">
+            <button className="ques-btn" onClick={this.props.triggerNextQues}>Next Question</button>
+          </div>
+        </React.Fragment>
       )
     }
     else{

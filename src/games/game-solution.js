@@ -4,6 +4,10 @@ class GameSolution extends Component{
   constructor(props){
     super(props);
     this.state = {}
+    this.nextQuesTrigger = this.nextQuesTrigger.bind(this)
+  }
+  nextQuesTrigger(){
+    this.props.nextQuestionTrigger();
   }
   render(){
     return(
@@ -11,6 +15,7 @@ class GameSolution extends Component{
         <h1>{this.props.solution}</h1>
         <img src={this.props.image} alt=""/>
         <div className="modal-description-scroll">{this.props.description}</div>
+        <button onClick={this.nextQuesTrigger}>Next</button>
       </div>
     )
   }

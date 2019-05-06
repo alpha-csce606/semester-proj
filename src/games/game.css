@@ -172,7 +172,8 @@ li.matchme-option{
   transition: 0.5s all ease-in-out;
 }
 li.matchme-option.active{
-  border-color: green;
+  /* border-color: green; */
+  /* flex-basis: 30%; */
 }
 .highlight-container.disp-none{
   opacity: 0;
@@ -193,4 +194,12 @@ li.matchme-option.active{
 }
 .green{
   color: green;
+}
+.ques-btn{
+  margin-top: 1rem;
+  padding: 2rem 0 2rem 0;
+  bottom:0;
+  width: 100%;
+  background: #eaeef3;
+  cursor: pointer;
 }

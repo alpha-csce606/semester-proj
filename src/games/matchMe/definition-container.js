@@ -8,21 +8,32 @@ class MatchMe_DefinitionHolder extends Component{
     }
     this.renderBlanks = this.renderBlanks.bind(this);
     this.checkSolution = this.checkSolution.bind(this);
+
+    this.handleDrop = this.handleDrop.bind(this);
   }
   checkSolution(event){
     if(!this.props.highlight){
       return false
     }
-
     //Send the chosen input to the MatchMe Component
     this.props.checkAnswers(event.target.getAttribute('index'),event.target.getAttribute('match'))
   }
+
+  handleDrop(event,target){
+    console.log(target,event);
+    this.checkSolution(event);
+  }
+
+  onDragOver = (event) => {
+	  event.preventDefault();
+	}
+
   renderBlanks(){
     return this.props.definition.map((item,index) =>{
         if(item.solved != undefined){
           if(!item.solved){
             return(
-              <input match={item.match} index={item.index} name="matchMeBlank" value="" readOnly className="matchMe_Input" onClick={this.checkSolution}/>
+              <input match={item.match} index={item.index} name="matchMeBlank" value="" readOnly className="matchMe_Input" onDrop={(event)=>this.handleDrop(event, "Done")} onDragOver={(event)=>this.onDragOver(event)} onClick={this.checkSolution}/>
             )
           }else{
             return(
