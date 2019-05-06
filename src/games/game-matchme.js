@@ -33,12 +33,17 @@ class Game_MatchMe extends Component{
   componentDidMount(){
     let randomIndex;
     let answerKey = {};
-    fetch('http://localhost:3000/data/data_matchMe.json')
+    console.log(this.props)
+    let url = 'http://localhost:3000/data/MatchMe/'+this.props.level+'.json';
+    fetch(url)
       .then(res => res.json())
       .then((res) => {
         this.setState({
           questionBank: res
         })
+        if(res.length==0){
+          return false
+        }
         randomIndex = Math.floor(Math.random() * res.length);
         let blankCount = 0;
         let words = res[randomIndex].definition.split(' ');

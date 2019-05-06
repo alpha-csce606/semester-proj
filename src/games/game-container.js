@@ -13,7 +13,7 @@ class GameContainer extends Component{
   componentDidMount(){
     let randomIndex;
     console.log(this.props)
-    let url = 'http://localhost:3000/data/data_labelMe.json';
+    let url = 'http://localhost:3000/data/LabelMe/'+this.props.level+'.json';
     console.log(url)
     fetch(url,{headers: new Headers({
       'Accept': 'application/json',
