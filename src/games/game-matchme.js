@@ -33,8 +33,9 @@ class Game_MatchMe extends Component{
   componentDidMount(){
     let randomIndex;
     let answerKey = {};
-    console.log(this.props)
-    let url = 'http://localhost:3000/data/MatchMe/'+this.props.level+'.json';
+    // let url = 'http://localhost:3000/data/MatchMe/'+this.props.level+'.json';
+    let origin = window.location.origin;
+    let url = origin+'/data/MatchMe/'+this.props.level+'.json';
     fetch(url)
       .then(res => res.json())
       .then((res) => {

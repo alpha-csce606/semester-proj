@@ -12,9 +12,9 @@ class GameContainer extends Component{
   }
   componentDidMount(){
     let randomIndex;
-    console.log(this.props)
-    let url = 'http://localhost:3000/data/LabelMe/'+this.props.level+'.json';
-    console.log(url)
+    let origin = window.location.origin;
+    let url = origin+'/data/LabelMe/'+this.props.level+'.json';
+
     fetch(url,{headers: new Headers({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -22,8 +22,6 @@ class GameContainer extends Component{
      })
       .then(res => res.json())
       .then((res) => {
-        console.log(this.state,res);
-
         randomIndex = Math.floor(Math.random() * res.length);
         this.setState({
           data: res[randomIndex],
