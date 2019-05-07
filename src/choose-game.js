@@ -2,8 +2,6 @@ import React,{ Component } from 'react';
 import { Link } from "react-router-dom";
 import ChooseLevel from './common/choose-level';
 
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 import PrimaryButton from './common/button';
 
 class ChooseGame extends Component{
@@ -68,16 +66,10 @@ class ChooseGame extends Component{
           }
           </ul>
         </ChooseLevel>
-        <ReactCSSTransitionGroup
-            transitionName="fadeIn"
-            transitionEnterTimeout={500}
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionLeaveTimeout={0}>
             <div className="fullpage-button-ctr">
               {button}
             </div>
-        </ReactCSSTransitionGroup>
+        
       </React.Fragment>
   )
   }
